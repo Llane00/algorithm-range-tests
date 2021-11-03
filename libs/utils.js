@@ -8,9 +8,9 @@ const randomNum = () => {
   return Math.floor(Math.random() * 100 + 1)
 }
 
-//生成随机数组，随机长度+随机数值
-const randomArray = () => {
-  return Array.from(Array(randomNum()), _ => randomNum())
+//生成随机数组，默认长度100
+const randomArray = (arrayLength = 100) => {
+  return Array.from(Array(arrayLength), _ => randomNum())
 }
 
 export {
