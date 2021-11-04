@@ -1,3 +1,7 @@
+function swap(array, a, b) {
+  [array[a], array[b]] = [array[b], array[a]]
+}
+
 //冒泡排序 start
 function bubbleSort(array) {
   for (let i = 0; i < array.length; i++) {
@@ -92,11 +96,37 @@ function easyQuickSort(array) {
 }
 //快速排序简化版 end
 
+//快速排序完整版 start 
+function partition(array, start, end) {
+  let j = start;
+  
+  //获取随机分界点
+  let randomIndex = Math.floor(Math.random() * (end - start + 1) + start)
+  swap(array, end, randomIndex)
+  let pivot = array[end]
+  
+  for (let i = start; i <= end; i++) {
+    if (array[i] <= pivot) {
+      swap(array, i, j)
+      j++
+    }
+  }
+  return j - 1;
+}
+function quickSort(array, start = 0, end = array.length - 1) {
+  if (end - start < 1) return array;
+  let pivotIndex = partition(array, start, end)
+  quickSort(array, start, pivotIndex - 1)
+  quickSort(array, pivotIndex + 1, end)
+  return array;
+}
+//快速排序完整版 end
 
 export {
   bubbleSort,
   selectionSort,
   insertionSort,
   mergeSort,
-  easyQuickSort
+  easyQuickSort,
+  quickSort
 }
