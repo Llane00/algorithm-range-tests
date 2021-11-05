@@ -8,6 +8,7 @@ import {
   mergeSort,
   easyQuickSort,
   quickSort,
+  countingSort,
 } from '../index'
 
 // 生成随机数组
@@ -38,6 +39,10 @@ describe('排序算法测试', () => {
 
   test('quickSort 快速排序完整版', () => {
     expect(quickSort(unSortArray)).toStrictEqual(sortArray)
+  })
+  
+  test('countingSort 计数排序', () => {
+    expect(countingSort(unSortArray)).toStrictEqual(sortArray)
   })
   
 

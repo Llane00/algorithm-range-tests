@@ -122,11 +122,41 @@ function quickSort(array, start = 0, end = array.length - 1) {
 }
 //快速排序完整版 end
 
+//计数排序 start 适用于整数数组
+function countingSort(array) {
+  //获取最小值 作为偏差值以兼容负整数
+  let min = Infinity;
+  for (let v of array) {
+    if (v < min) {
+      min = v
+    }
+  }
+
+  let counts = []
+  for (let v of array) {
+    counts[v - min] = (counts[v - min] || 0) + 1
+  }
+
+  let index = 0;
+  for (let i = 0; i < counts.length; i++) {
+    let count = counts[i]
+    while (count > 0) {
+      array[index] = i + min
+      index++
+      count--
+    }
+  }
+
+  return array
+}
+//计数排序 end
+
 export {
   bubbleSort,
   selectionSort,
   insertionSort,
   mergeSort,
   easyQuickSort,
-  quickSort
+  quickSort,
+  countingSort
 }
