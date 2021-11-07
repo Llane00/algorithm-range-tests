@@ -99,12 +99,12 @@ function easyQuickSort(array) {
 //快速排序完整版 start 
 function partition(array, start, end) {
   let j = start;
-  
+
   //获取随机分界点
   let randomIndex = Math.floor(Math.random() * (end - start + 1) + start)
   swap(array, end, randomIndex)
   let pivot = array[end]
-  
+
   for (let i = start; i <= end; i++) {
     if (array[i] <= pivot) {
       swap(array, i, j)
@@ -113,6 +113,7 @@ function partition(array, start, end) {
   }
   return j - 1;
 }
+
 function quickSort(array, start = 0, end = array.length - 1) {
   if (end - start < 1) return array;
   let pivotIndex = partition(array, start, end)
@@ -151,6 +152,30 @@ function countingSort(array) {
 }
 //计数排序 end
 
+//桶排序 start
+function bucketSort(array, size = 10) {
+  let min = Math.min(...array)
+  let max = Math.max(...array)
+  let count = Math.floor((max - min) / size) + 1
+  let buckets = []
+  for (var i = 0; i < count; i++) {
+    buckets.push([])
+  }
+
+  for (let value of array) {
+    let bucketIndex = Math.floor((value - min) / size)
+    buckets[bucketIndex].push(value)
+  }
+
+  let result = []
+  for (let bucket of buckets) {
+    result.push(...insertionSort(bucket))
+  }
+
+  return result;
+}
+//桶排序 end
+
 export {
   bubbleSort,
   selectionSort,
@@ -158,5 +183,6 @@ export {
   mergeSort,
   easyQuickSort,
   quickSort,
-  countingSort
+  countingSort,
+  bucketSort
 }

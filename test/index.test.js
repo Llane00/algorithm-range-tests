@@ -9,6 +9,7 @@ import {
   easyQuickSort,
   quickSort,
   countingSort,
+  bucketSort,
 } from '../index'
 
 // 生成随机数组
@@ -24,7 +25,7 @@ describe('排序算法测试', () => {
   test('selectionSort 选择排序', () => {
     expect(selectionSort(unSortArray)).toStrictEqual(sortArray)
   })
-  
+
   test('insertSort 插入排序', () => {
     expect(insertionSort(unSortArray)).toStrictEqual(sortArray)
   })
@@ -40,10 +41,13 @@ describe('排序算法测试', () => {
   test('quickSort 快速排序完整版', () => {
     expect(quickSort(unSortArray)).toStrictEqual(sortArray)
   })
-  
+
   test('countingSort 计数排序', () => {
     expect(countingSort(unSortArray)).toStrictEqual(sortArray)
   })
-  
+
+  test('bucketSort 桶排序', () => {
+    expect(bucketSort(unSortArray)).toStrictEqual(sortArray)
+  })
 
 })
