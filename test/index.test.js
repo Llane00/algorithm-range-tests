@@ -10,6 +10,7 @@ import {
   quickSort,
   countingSort,
   bucketSort,
+  radioSort,
 } from '../index'
 
 // 生成随机数组
@@ -48,6 +49,10 @@ describe('排序算法测试', () => {
 
   test('bucketSort 桶排序', () => {
     expect(bucketSort(unSortArray)).toStrictEqual(sortArray)
+  })
+
+  test('radioSort 基数排序', () => {
+    expect(radioSort(unSortArray)).toStrictEqual(sortArray)
   })
 
 })

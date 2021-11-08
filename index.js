@@ -176,6 +176,45 @@ function bucketSort(array, size = 10) {
 }
 //桶排序 end
 
+//基数排序 start
+function radioSort(array) {
+  let maxLength = 0
+  for (let v of array) {
+    let length = String(v).length
+    if (length > maxLength) {
+      maxLength = length
+    }
+  }
+
+  // 最长有几位就轮询排序几次
+  for (let i = 0; i < maxLength; i++) {
+    array = sort(array, i)
+  }
+
+  function sort(array, index) {
+    let buckets = []
+    for (let i = 0; i < 10; i++) {
+      buckets.push([])
+    }
+
+    for (let v of array) {
+      let pad = String(v).padStart(maxLength, '0')
+      let num = pad[maxLength - 1 - index]
+      buckets[num].push(v)
+    }
+
+    let result = []
+    for (let bucket of buckets) {
+      result.push(...bucket)
+    }
+
+    return result
+  }
+
+  return array
+}
+//基数排序 end
+
 export {
   bubbleSort,
   selectionSort,
@@ -184,5 +223,6 @@ export {
   easyQuickSort,
   quickSort,
   countingSort,
-  bucketSort
+  bucketSort,
+  radioSort
 }
